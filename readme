@@ -1,0 +1,8 @@
+npm install -g create-react-app
+--------------------------------
+create-react-app test1
+cd test1
+npm start
+--------------------------------
+To create a production build, use:  npm run build.
+--------------------------------
