@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Product from './Product/Product';
-import './App.css';
+import Product from '../components/Products/Products';
+import Cockpit from '../components/Cockpit/Cockpit'
+import './App.scss';
 
 class App extends Component {
   state = {
@@ -50,36 +51,29 @@ class App extends Component {
 
   render() {
     let products = null;
-    let classes = [this.state.products.length <= 1 ? 'red' : 'green']
+    products = (
+      <Product
+        products={this.state.products}
+        clicked={this.deleteProduct}
+        changed={this.nameChanegHandler}
+      > </Product>
+    )
 
     return (
       <div className="App">
-        <h1 className={classes.join(' ')}> {(this.state.products.length <= 1) ? 'End of resources' : 'Resources'} </h1>
+
+        <Cockpit
+          products={this.state.products}
+        > </Cockpit>
+
         <button onClick={this.testButtonHandlerChangeWeight} > Test change weight </button>
         <button onClick={this.testButtonHandlerShowHide} > Show / Hide - Data</button>
         <button onClick={this.deleteProduct} > Delete Product</button>
 
         {this.state.showData === true ?
-          products = (
-            <div>
-              {
-                this.state.products.map(product => {
-                  return <Product
-                    id={product.id}
-                    name={product.name}
-                    weight={product.weight}
-                    key={product.id}
-                    click={() => this.deleteProduct(product.id)}
-                    changed={(event) => this.nameChanegHandler(event, product.id)}
-                  >
-                  </Product>
-                })
-              }
-              {/* <Product name={this.state.products[0].name} weight={this.state.products[0].weight}> </Product>
-              <Product name={this.state.products[1].name} weight={this.state.products[1].weight}> </Product> */}
-            </div>
-          )
-
+          <div>
+            {products}
+          </div>
           : <p> no data </p>
         }
       </div>
