@@ -5,9 +5,9 @@ import './App.css';
 class App extends Component {
   state = {
     products: [
-      { id: 1, name: "product 1", weight: 200 },
-      { id: 2, name: "product 2", weight: 230 },
-      { id: 3, name: "product 3", weight: 99 }
+      { id: 1, name: "product 1", weight: 200, changed: '' },
+      { id: 2, name: "product 2", weight: 230, changed: '' },
+      { id: 3, name: "product 3", weight: 99, changed: '' }
     ],
     showData: false
   }
@@ -20,6 +20,23 @@ class App extends Component {
       )
     }));
   }
+  nameChanegHandler = (event, id) => {
+    const productIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    const product = {
+      ...this.state.products[productIndex] // spread operator
+    };
+    //const product = Object.assign({}, this.state.products[productIndex]); // create object by Object.assign
+    product.name = event.target.value;
+
+    const products = [...this.state.products];
+    productIndex[productIndex] = products;
+
+    this.setState({ products: products });
+  }
+
   testButtonHandlerShowHide = () => {
     const showData1 = this.state.showData;
     this.setState({ showData: !showData1 })
@@ -33,48 +50,38 @@ class App extends Component {
 
   render() {
     let products = null;
+    let classes = [this.state.products.length <= 1 ? 'red' : 'green']
+
     return (
       <div className="App">
-        <h1> Test1</h1>
+        <h1 className={classes.join(' ')}> {(this.state.products.length <= 1) ? 'End of resources' : 'Resources'} </h1>
         <button onClick={this.testButtonHandlerChangeWeight} > Test change weight </button>
         <button onClick={this.testButtonHandlerShowHide} > Show / Hide - Data</button>
         <button onClick={this.deleteProduct} > Delete Product</button>
 
         {this.state.showData === true ?
           products = (
-            <p>
+            <div>
               {
                 this.state.products.map(product => {
                   return <Product
                     id={product.id}
                     name={product.name}
                     weight={product.weight}
-                    click={() => this.deleteProduct(product.id)}>
+                    key={product.id}
+                    click={() => this.deleteProduct(product.id)}
+                    changed={(event) => this.nameChanegHandler(event, product.id)}
+                  >
                   </Product>
                 })
               }
               {/* <Product name={this.state.products[0].name} weight={this.state.products[0].weight}> </Product>
               <Product name={this.state.products[1].name} weight={this.state.products[1].weight}> </Product> */}
-            </p>
+            </div>
           )
 
           : <p> no data </p>
         }
-
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header> */}
       </div>
     );
   }

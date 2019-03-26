@@ -2,15 +2,18 @@
   float: left;
   text-align: left;
 }
+
 .Product {
-    font-size: 16px;
-    color: red;
-  }
-  .Product-name {
-    font-size: 14px;
-    color: blue;
-  }
-  .Product-weight {
-    font-size: 14px;
-    color: blue;
-  }
+  font-size: 16px;
+  color: red;
+}
+
+.Product-name {
+  font-size: 14px;
+  color: blue;
+}
+
+.Product-weight {
+  font-size: 14px;
+  color: blue;
+}

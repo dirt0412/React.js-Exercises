@@ -1,0 +1,23 @@
+$font-size14: 14px;
+$font-size16: 16px;
+$color-blue: blue;
+
+@mixin product-view () {  
+  font-size: $font-size14;
+  color: $color-blue;  
+}  
+
+.Product-ul {
+  float: left;
+  text-align: left;  
+}
+.Product {
+    font-size: $font-size16;
+    color: red;
+  }
+  .Product-name {
+    @include product-view();
+  }
+  .Product-weight {
+    @include product-view();
+  }
