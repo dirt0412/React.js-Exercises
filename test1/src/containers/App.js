@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Product from '../components/Products/Products';
 import Cockpit from '../components/Cockpit/Cockpit'
+import ReduxTest1 from '../components/ReduxExample/Redux'
 import './App.scss';
 
 class App extends Component {
@@ -65,6 +66,10 @@ class App extends Component {
         <Cockpit
           products={this.state.products}
         > </Cockpit>
+
+        <p>
+          <ReduxTest1> </ReduxTest1>
+        </p>
 
         <button onClick={this.testButtonHandlerChangeWeight} > Test change weight </button>
         <button onClick={this.testButtonHandlerShowHide} > Show / Hide - Data</button>

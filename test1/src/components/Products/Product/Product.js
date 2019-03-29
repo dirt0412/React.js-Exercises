@@ -7,7 +7,7 @@ const product = (props) => {
             <ul className="Product-ul">
                 <li className="Product">
                     My Product
-            </li>
+                </li>
                 <li >
                     ID: <span className="Product-name">{props.id}</span>
                 </li>
@@ -19,7 +19,7 @@ const product = (props) => {
                 </li>
             </ul>
             <p>{props.children}</p>
-            {/* <input type="text" onChange={props.changed} value={props.name} > </input> */}
+            {/* <input type="text" onChange={props.changed} value='' > </input> */}
         </div>
     )
 };
