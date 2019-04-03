@@ -5,15 +5,58 @@ import ReduxTest1 from '../components/ReduxExample/Redux'
 import './App.scss';
 
 class App extends Component {
-  state = {
-    products: [
-      { id: 1, name: "product 1", weight: 200, changed: '' },
-      { id: 2, name: "product 2", weight: 230, changed: '' },
-      { id: 3, name: "product 3", weight: 99, changed: '' }
-    ],
-    showData: false
+  //hook life cycle
+  //##########################
+  //mount
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: [
+        { id: 1, name: "product 1", weight: 200, changed: '' },
+        { id: 2, name: "product 2", weight: 230, changed: '' },
+        { id: 3, name: "product 3", weight: 99, changed: '' }
+      ],
+      data: [],
+      showData: false
+    };
+  }
+  componentWillMount() { console.log('this is called before render!'); }
+  //render(){}
+  componentDidMount() {
+    // this.service.getData().then(response => {
+    //   this.setState({
+    //     data: response.data
+    //   })
+    // });
   }
 
+  //update
+  componentWillReceiveProps(nextProps) {
+    // if (nextProps.reset) {
+    //   this.setState({ data: [] });
+    // }
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('returning false will prevent re-rendering!');
+    return true;
+  }
+  componentWillUpdate(nextProps, nextState) {
+    console.log('this is called before re-render!');
+  }
+  //render(){}
+  componentDidUpdate(prevProps, prevState) {
+    // if (this.props.getDataAgain) {
+    //   this.service.getData().then(response => {
+    //     this.setState({
+    //       data: response.data
+    //     })
+    //   });
+    // }
+  }
+
+  //unmount
+  componentWillUnmount() { }
+  //############################
 
   testButtonHandlerChangeWeight = () => {
     this.setState(prevState => ({
@@ -68,7 +111,7 @@ class App extends Component {
         > </Cockpit>
 
         <p>
-          <ReduxTest1> </ReduxTest1>
+          {/* <ReduxTest1> </ReduxTest1> */}
         </p>
 
         <button onClick={this.testButtonHandlerChangeWeight} > Test change weight </button>
